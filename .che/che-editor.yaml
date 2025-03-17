@@ -1,0 +1,5 @@
+id: che-incubator/che-idea-server/latest
+override:
+  components:
+    - name: editor-injector
+      command: ['/entrypoint-init-container.sh', 'goland']
