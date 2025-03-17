@@ -1,0 +1,24 @@
+schemaVersion: 2.3.0
+attributes:
+  controller.devfile.io/storage-type: per-user
+metadata:
+  name: che-golang
+components:
+  - name: tooling-container
+    container:
+      image: quay.io/eclipse/che-operator-dev:latest
+      memoryRequest: 2Gi
+      memoryLimit: 16Gi
+      cpuRequest: 2000m
+      cpuLimit: 6000m
+      env:
+        - name: GO111MODULE
+          value: 'on'
+        - name: GOPATH
+          value: /home/user/go
+        - name: GOCACHE
+          value: /tmp/.cache
+        - name: IMAGE_TOOL
+          value: podman
+        - name: KUBECONFIG
+          value: /home/user/.kube/config
