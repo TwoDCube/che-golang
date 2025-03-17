@@ -4,21 +4,19 @@ attributes:
 metadata:
   name: che-golang
 components:
-  - name: tooling-container
+  - name: tools
     container:
-      image: quay.io/eclipse/che-operator-dev:latest
-      memoryRequest: 2Gi
-      memoryLimit: 16Gi
-      cpuRequest: 2000m
-      cpuLimit: 6000m
+      image: registry.redhat.io/devspaces/udi-rhel9@sha256:65c893972c503b136d6b373c49f113b8c63530d4c7873ef8ab20357e5d43fe7a
+      memoryLimit: 2Gi
+      memoryRequest: 1Gi
+      cpuLimit: '1'
+      cpuRequest: '0.5'
+      mountSources: true
       env:
-        - name: GO111MODULE
-          value: 'on'
-        - name: GOPATH
-          value: /home/user/go
         - name: GOCACHE
           value: /tmp/.cache
-        - name: IMAGE_TOOL
-          value: podman
-        - name: KUBECONFIG
-          value: /home/user/.kube/config
+      endpoints:
+        - exposure: public
+          name: health-check
+          protocol: https
+          targetPort: 8080
